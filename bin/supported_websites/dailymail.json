@@ -1,0 +1,11 @@
+{"tags_retrieval": [
+    {"tag" : "div[itemprop='articleBody'] p", "field_name": "story"},
+    {"tag" : "a.author", "field_name": "author"},
+    {"tag" : "span.article-timestamp", "field_name": "date"},
+    {"tag" : "div#js-article-text > h1", "field_name": "headline"}
+  ],
+  "display_name": "DailyMail",
+  "logo_url": "http://i.imgur.com/N6EYcfD.png",
+  "site_url": "http://www.dailymail.co.uk",
+	"hidden": false
+}

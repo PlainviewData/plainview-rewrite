@@ -1,0 +1,12 @@
+{
+  "tags_retrieval": [
+    {"tag" : ".entry-content p", "field_name": "story"},
+    {"tag" : "p.byline > a", "field_name": "author"},
+    {"tag" : "p.byline-date", "field_name": "date"},
+    {"tag" : "div.article-header > h1", "field_name": "headline"}
+  ],
+  "display_name": "New York Post",
+  "logo_url": "http://i.imgur.com/2eK8tYR.jpg",
+  "site_url": "http://nypost.com/",
+	"hidden": false
+}

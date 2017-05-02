@@ -1,0 +1,12 @@
+{
+  "tags_retrieval": [
+    {"tag" : ".entry-content p", "field_name": "story"},
+    {"tag" : "span.entry-author-name", "field_name": "author"},
+    {"tag" : "span.entry-meta-content", "field_name": "date"},
+    {"tag" : "h1[itemprop='headline']", "field_name": "headline"}
+  ],
+  "display_name": "TheGatewayPundit",
+  "logo_url": "http://i.imgur.com/sBcFXIx.png",
+  "site_url": "http://www.thegatewaypundit.com/",
+	"hidden": false
+}

@@ -1,0 +1,12 @@
+{
+  "tags_retrieval": [
+    {"tag" : "div[itemprop='articleBody'] p", "field_name": "story"},
+    {"tag" : "a[itemprop='author']", "field_name": "author"},
+    {"tag" : "time.trb_ar_dateline_time", "field_name": "date"},
+    {"tag" : "h1[itemprop='headline']", "field_name": "headline"}
+  ],
+  "display_name": "LA Times",
+  "logo_url": "http://i.imgur.com/Pohlcvd.png",
+  "site_url": "http://www.latimes.com/",
+	"hidden": false
+}

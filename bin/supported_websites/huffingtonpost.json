@@ -1,0 +1,12 @@
+{
+  "tags_retrieval": [
+    {"tag" : ".content-list-component p", "field_name": "story"},
+    {"tag" : "span.author-card__details__name", "field_name": "author"},
+    {"tag" : "span.timestamp__date--published", "fielfield_namedName": "date"},
+    {"tag" : "h1.headline__title", "field_name": "headline"}
+  ],
+  "display_name": "Huffington Post",
+  "logo_url": "http://i.imgur.com/3huWPUP.png",
+  "site_url": "http://www.huffingtonpost.com/",
+	"hidden": false
+}

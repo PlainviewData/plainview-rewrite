@@ -1,0 +1,125 @@
+[{
+      "domain": "abcnews",
+      "display_name": "ABC News",
+      "logo_url": "http://i.imgur.com/w7SV3xK.png",
+      "site_url": "http://abcnews.go.com/"
+    },
+    {
+      "domain": "bbc",
+      "display_name": "BBC",
+      "logo_url": "http://i.imgur.com/LWUJ03l.png",
+      "site_url": "http://www.bbc.com/"
+    },
+    {
+      "domain": "breitbart",
+      "display_name": "Breitbart",
+      "logo_url": "http://i.imgur.com/Jp4FJ7x.png",
+      "site_url": "http://www.breitbart.com/"
+    },
+    {
+      "domain": "cnn",
+      "display_name": "CNN",
+      "logo_url": "http://i.imgur.com/s7B5VOc.png",
+      "site_url": "http://www.cnn.com/"
+    },
+    {
+      "domain": "dailymail",
+      "display_name": "DailyMail",
+      "logo_url": "http://i.imgur.com/N6EYcfD.png",
+      "site_url": "http://www.dailymail.co.uk/ushome/index.html"
+    },
+    {
+      "domain": "foxnews",
+      "display_name": "Fox News",
+      "logo_url": "http://i.imgur.com/nFYyFET.png",
+      "site_url": "http://www.foxnews.com/"
+    },
+    {
+      "domain": "huffingtonpost",
+      "display_name": "Huffington Post",
+      "logo_url": "http://i.imgur.com/3huWPUP.png",
+      "site_url": "http://www.huffingtonpost.com/"
+    },
+    {
+      "domain": "latimes",
+      "display_name": "LA Times",
+      "logo_url": "http://i.imgur.com/Pohlcvd.png",
+      "site_url": "http://www.latimes.com/"
+    },
+    {
+      "domain": "nydailynews",
+      "display_name": "NY Daily News",
+      "logo_url": "http://i.imgur.com/S2zDtKI.png",
+      "site_url": "http://www.nydailynews.com/"
+    },
+    {
+      "domain": "nypost",
+      "display_name": "New York Post",
+      "logo_url": "http://i.imgur.com/2eK8tYR.jpg",
+      "site_url": "http://nypost.com/"
+    },
+    {
+      "domain": "nytimes",
+      "display_name": "New York Times",
+      "logo_url": "http://i.imgur.com/DU1S0Qi.png",
+      "site_url": "https://www.nytimes.com/"
+    },
+    {
+      "domain": "politico",
+      "display_name": "Politico",
+      "logo_url": "http://i.imgur.com/hOGOqrm.png",
+      "site_url": "http://www.politico.com/"
+    },
+    {
+      "domain": "rawstory",
+      "display_name": "RAWSTORY",
+      "logo_url": "http://i.imgur.com/AHafn75.png",
+      "site_url": "http://www.rawstory.com/"
+    },
+    {
+      "domain": "reddit",
+      "display_name": "Reddit",
+      "logo_url": "http://i.imgur.com/UMj43VI.png",
+      "site_url": "https://www.reddit.com/"
+    },
+    {
+      "domain": "sfgate",
+      "display_name": "SFGATE",
+      "logo_url": "http://i.imgur.com/MWdwNDJ.png",
+      "site_url": "http://www.sfgate.com/"
+    },
+    {
+      "domain": "thegatewaypundit",
+      "display_name": "TheGatewayPundit",
+      "logo_url": "http://i.imgur.com/sBcFXIx.png",
+      "site_url": "http://www.thegatewaypundit.com/"
+    },
+    {
+      "domain": "thehill",
+      "display_name": "The Hill",
+      "logo_url": "http://i.imgur.com/uSJnJ6U.png",
+      "site_url": "http://thehill.com/"
+    },
+    {
+      "domain": "theindependent",
+      "display_name": "The Independent",
+      "logo_url": "http://i.imgur.com/edxeAm7.png",
+      "site_url": "http://www.theindependent.com/"
+    },
+    {
+      "domain": "usatoday",
+      "display_name": "USA Today",
+      "logo_url": "http://i.imgur.com/dtmcF0h.png",
+      "site_url": "https://www.usatoday.com/"
+    },
+    {
+      "domain": "washingtonpost",
+      "display_name": "Washington Post",
+      "logo_url": "http://i.imgur.com/gPvjwEs.png",
+      "site_url": "https://www.washingtonpost.com/"
+    },
+    {
+      "domain": "herokuapp",
+      "hidden": true
+    }
+]

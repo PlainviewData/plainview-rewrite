@@ -1,0 +1,11 @@
+{"tags_retrieval": [
+    {"tag" : ".article-text p", "field_name": "story"},
+    {"tag" : "div.article-info > div > p > span", "field_name": "author"},
+    {"tag" : "time", "field_name": "date"},
+    {"tag" : "article > div > h1", "field_name": "headline"}
+  ],
+  "display_name": "Fox News",
+  "logo_url": "http://i.imgur.com/nFYyFET.png",
+  "site_url": "http://www.foxnews.com/",
+	"hidden": false
+}

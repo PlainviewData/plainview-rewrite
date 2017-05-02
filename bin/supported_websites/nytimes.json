@@ -1,0 +1,12 @@
+{
+	"tags_retrieval": [
+		{"tag" : ".story-body p", "field_name": "story"},
+		{"tag" : "span.byline-author", "field_name": "author"},
+		{"tag" : "p.byline-dateline > time.dateline", "field_name": "date"},
+		{"tag": "h1#headline","field_name": "headline"}
+	],
+	"display_name": "New York Times",
+	"logo_url": "http://i.imgur.com/DU1S0Qi.png",
+	"site_url": "https://www.nytimes.com/",
+	"hidden": false
+}

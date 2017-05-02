@@ -1,0 +1,12 @@
+{
+  "tags_retrieval": [
+    {"tag" : ".l-container .zn-body__paragraph", "field_name": "story"},
+    {"tag" : "span.metadata__byline__author", "field_name": "author"},
+    {"tag" : "p.update-time", "field_name": "date"},
+    {"tag" : "h1.pg-headline", "field_name": "headline"}
+  ],
+  "display_name": "CNN",
+  "logo_url": "http://i.imgur.com/s7B5VOc.png",
+  "site_url": "http://www.cnn.com/",
+	"hidden": false
+}

@@ -1,0 +1,12 @@
+{
+  "tags_retrieval": [
+    {"tag" : "article[itemprop='articleBody'] p, article[itemprop='articleBody'] li ", "field_name": "story"},
+    {"tag" : "a[rel~='author']", "field_name": "author"},
+    {"tag" : "div#ra-date-published", "field_name": "date"},
+    {"tag" : "h1[itemprop='headline']", "field_name": "headline"}
+  ],
+  "display_name": "NY Daily News",
+  "logo_url": "http://i.imgur.com/S2zDtKI.png",
+  "site_url": "http://www.nydailynews.com/",
+	"hidden": false
+}

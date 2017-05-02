@@ -1,0 +1,12 @@
+{
+  "tags_retrieval": [
+    {"tag" : ".content-wrp p", "field_name": "story"},
+    {"tag" : "span.submitted-by > a", "field_name": "author"},
+    {"tag" : "span.submitted-date", "field_name": "date"},
+    {"tag" : "h1.title", "field_name": "headline"}
+  ],
+  "display_name": "The Hill",
+  "logo_url": "http://i.imgur.com/uSJnJ6U.png",
+  "site_url": "http://thehill.com/",
+	"hidden": false
+}

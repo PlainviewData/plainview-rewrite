@@ -1,0 +1,12 @@
+{
+  "tags_retrieval": [
+    {"tag" : "div[itemprop='articleBody'] p", "field_name": "story"},
+    {"tag" : "span[itemprop='name'] > a", "field_name": "author"},
+    {"tag" : "time", "field_name": "date"},
+    {"tag" : "h1[itemprop='headline'] > a", "field_name": "headline"}
+  ],
+  "display_name": "The Independent",
+  "logo_url": "http://i.imgur.com/edxeAm7.png",
+  "site_url": "http://www.theindependent.com/",
+	"hidden": false
+}
