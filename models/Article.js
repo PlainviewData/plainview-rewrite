@@ -64,9 +64,14 @@ articleSchema.statics.createNew = function createNew(url, options){
       article.original_authors = content.author; //change to authors
       article.original_date_posted = content.date; //change to date_posted
     }).then(function(){
-      return archive_is.save(article.news_site_url).then(function (result) {
-        article.archive_is_id = result.id;
-      });
+      if (options.post_to_archive_is){
+        return archive_is.save(article.news_site_url).then(function (result) {
+          article.archive_is_id = result.id;
+        });
+      } else {
+        article.archive_is_id = null;
+        return;
+      }
     }).then(function(){
       article.save(function(err, article){
         if (err) reject(err);
