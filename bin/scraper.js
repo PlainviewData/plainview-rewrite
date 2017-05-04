@@ -2,14 +2,14 @@ const noodle = require('noodlejs');
 const parseDomain = require('parse-domain');
 const MESSAGES = require('../bin/messages');
 const config = require('../config/scraper');
-const supportedWebsite = require('../models/supportedWebsite');
+const SupportedWebsite = require('../models/SupportedWebsite');
 const some = require('lodash.some');
 const find = require('lodash.find');
 
 const CURRENT_SCRAPING_METHOD = "Noodle/CSS Selectors";
 var SUPPORTED_WEBSITES;
 
-supportedWebsite.getAll()
+SupportedWebsite.getAll()
   .then(function(sites){
     SUPPORTED_WEBSITES = sites;
   })

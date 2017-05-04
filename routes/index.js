@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const supportedWebsite = require('../models/supportedWebsite');
+const supportedWebsite = require('../models/SupportedWebsite');
+var SUPPORTED_WEBSITES;
 
 supportedWebsite.getAll()
   .then(function(sites){
@@ -8,7 +9,7 @@ supportedWebsite.getAll()
   })
 
 router.get('/supported_websites', function(req, res, next) {
-  res.send(PUBLIC_SUPPORTED_WEBSITES);
+  res.send(SUPPORTED_WEBSITES);
 });
 
 module.exports = router;

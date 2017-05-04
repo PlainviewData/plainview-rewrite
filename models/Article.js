@@ -11,9 +11,9 @@ const archive_is = require('archive.is');
 const scraper = require('../bin/scraper');
 const MESSAGES = require('../bin/messages');
 const Schema = mongoose.Schema;
-const supportedWebsite = require('../models/supportedWebsite');
+const SupportedWebsite = require('../models/SupportedWebsite');
 
-supportedWebsite.getAll()
+SupportedWebsite.getAll()
   .then(function(sites){
     SUPPORTED_WEBSITES = sites;
   })
