@@ -82,7 +82,7 @@ describe('', function(){
 
   describe('Creating an article with a supported website but no article on the page', function(){
     const websites = ['http://www.cnn.com', 'http://www.bbc.com/foo', 'http://nytimes.org/']
-    it.each(websites, 'should inform of the failure to scrape the article', function(website){
+    it.each(websites, 'should inform of the failure to scrape the article', function(website, next){
       chai.request(app)
       .post('/articles')
       .set('content-type', 'application/x-www-form-urlencoded')
@@ -112,7 +112,7 @@ describe('', function(){
 
   describe('Getting an article by id that doesn\'t exist', function(){
     const nonexistentIds = ['123456', 'aaaaaa', 'bbbbbb'];
-    it.each(nonexistentIds, 'should inform of an nonexistent id and give back a 400 status code', function(id, next){
+    it.each(nonexistentIds, 'should inform of an nonexistent id and give back a 404 status code', function(id, next){
       chai.request(app)
       .get('/articles/'+id)
       .end((err, res) => {

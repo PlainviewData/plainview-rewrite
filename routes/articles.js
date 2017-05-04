@@ -35,7 +35,6 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next){
-  console.log(req.body)
   Article.createNew(req.body.url, req.body.options)
   .then(function(article){
     res.status(201).json(article);

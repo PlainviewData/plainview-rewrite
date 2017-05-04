@@ -10,10 +10,13 @@ const validator = require('validator');
 const archive_is = require('archive.is');
 const scraper = require('../bin/scraper');
 const MESSAGES = require('../bin/messages');
-const SUPPORTED_WEBSITES = require('../config/supported_websites');
-const dbConfig = require('../config/db');
-const ObjectId = mongoose.SchemaTypes.ObjectId;
 const Schema = mongoose.Schema;
+const supportedWebsite = require('../models/supportedWebsite');
+
+supportedWebsite.getAll()
+  .then(function(sites){
+    SUPPORTED_WEBSITES = sites;
+  })
 
 const revision_comparisons = [
   {field: 'original_headline', comparison: 'headline', diff_field: 'headline_revisions'},
