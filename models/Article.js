@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 const shortid = require('shortid');
 const jsdiff = require('diff');
 const parseDomain = require('parse-domain');
-const _ = require('lodash');
 const some = require('lodash.some');
-const isEmpty = require('lodash.isempty');
+const isEqual = require('lodash.isEqual');
+const isEqualWith = require('lodash.isequalwith');
+const isEmpty = require('lodash.isEmpty');
 const moment = require('moment');
 const validator = require('validator');
 const archive_is = require('archive.is');
@@ -117,7 +118,6 @@ articleSchema.statics.findByUrl = function findByUrl(url, options) {
         resolve(null);
       } else {
         if (options.ignore_article_min_time_passed || moment.duration(moment().diff(article.last_checked_for_revision)).asHours() > 1){
-          console.log('checking for new article')
           article.checkForChanges()
           .then(function(article){
             resolve(article);
@@ -146,7 +146,20 @@ articleSchema.methods.checkForChanges = function checkForChanges() {
           diff = jsdiff.diffArrays(article[revision_comparison.field], content[revision_comparison.comparison]);
         }
         if (some(diff, ['removed', true]) || some(diff, ['added', true])){
-          changes.push({diff:diff, field: revision_comparison.diff_field});
+          diff.forEach(function(d){
+            for (k in d){
+              if (d[k] == undefined) d[k] = null;
+            }
+          });
+          var found = false;
+          article[revision_comparison.diff_field].forEach(function(revision){
+            if (isEqual(revision, diff)){
+              found = true;
+            }
+          });
+          if (found == false){
+            changes.push({diff:diff, field: revision_comparison.diff_field});
+          }
         }
       });
       if (isEmpty(changes) == false){
@@ -170,9 +183,9 @@ articleSchema.methods.addRevisions = function addRevisions(changes) {
     pushedObject[change.field] = change.diff;
   });
   return new Promise(function(resolve, reject){
-    Article.findOneAndUpdate({ _id: article._id }, { $push: pushedObject }, {new: true}, function(err, article){
+    Article.findOneAndUpdate({ _id: article._id }, { $push: pushedObject }, {new: true}, function(err, updatedArticle){
       if (err) reject(err);
-      resolve(article);
+      resolve(updatedArticle);
     });
   });
 };
