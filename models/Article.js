@@ -36,10 +36,10 @@ const articleSchema = new Schema({
 	original_authors: [String],
   original_date_posted: [String],
 
-  headline_revisions: [{change: Object, time_observed: Date}],
-  story_content_revisions: [{change: Object, time_observed: Date}],
-  authors_revisions: [{change: Object, time_observed: Date}],
-  date_posted_revisions: [{change: Object, time_observed: Date}],
+  headline_revisions: [],
+  story_content_revisions: [],
+  authors_revisions: [],
+  date_posted_revisions: [],
 
 	archive_is_id: String,
 });
@@ -49,7 +49,6 @@ articleSchema.virtual('news_site_domain').get(function () {
 });
 
 articleSchema.statics.createNew = function createNew(url, options){
-  console.log('options1', options);
   return new Promise(function(resolve, reject){
     if (typeof url !== 'string' && (url instanceof String) === false || validator.isURL(url) === false) reject(MESSAGES.INVALID_URL);
     url = validator.trim(url);
@@ -65,7 +64,6 @@ articleSchema.statics.createNew = function createNew(url, options){
       article.original_authors = content.author; //change to authors
       article.original_date_posted = content.date; //change to date_posted
     }).then(function(){
-      console.log('options2', options);
       if (options.post_to_archive_is){
         return archive_is.save(article.news_site_url).then(function (result) {
           article.archive_is_id = result.id;
@@ -119,6 +117,7 @@ articleSchema.statics.findByUrl = function findByUrl(url, options) {
         resolve(null);
       } else {
         if (options.ignore_article_min_time_passed || moment.duration(moment().diff(article.last_checked_for_revision)).asHours() > 1){
+          console.log('checking for new article')
           article.checkForChanges()
           .then(function(article){
             resolve(article);
@@ -138,17 +137,17 @@ articleSchema.methods.checkForChanges = function checkForChanges() {
   return new Promise(function(resolve, reject){
     scraper.scrape(article.news_site_url)
     .then(function(content){
-      var changes = {};
+      var changes = [];
       revision_comparisons.forEach(function(revision_comparison){
         var diff;
         if (typeof article[revision_comparison.field] === 'string'){
           diff = jsdiff.diffChars(article[revision_comparison.field], content[revision_comparison.comparison]);
         } else if (typeof article[revision_comparison.field] === 'object'){
           diff = jsdiff.diffArrays(article[revision_comparison.field], content[revision_comparison.comparison]);
-        } else {
-          console.log(typeof article[revision_comparison.field], article[revision_comparison.field])
         }
-        if (diff.hasOwnProperty('removed') || diff.hasOwnProperty('added')) changes.push({diff:diff, field: revision_comparison.diff_field});
+        if (some(diff, ['removed', true]) || some(diff, ['added', true])){
+          changes.push({diff:diff, field: revision_comparison.diff_field});
+        }
       });
       if (isEmpty(changes) == false){
         article.addRevisions(changes)
@@ -166,13 +165,12 @@ articleSchema.methods.checkForChanges = function checkForChanges() {
 
 articleSchema.methods.addRevisions = function addRevisions(changes) {
   var article = this;
-  var pushedObject = changes.map(function(change){
-    const field = change.field;
-    const diff = change.diff;
-    return {field : diff, time_observed: new Date()};
+  var pushedObject = {};
+  changes.forEach(function(change){
+    pushedObject[change.field] = change.diff;
   });
   return new Promise(function(resolve, reject){
-    Article.update({ _id: this._id }, { $push: pushedObject }, function(err, article){
+    Article.findOneAndUpdate({ _id: article._id }, { $push: pushedObject }, {new: true}, function(err, article){
       if (err) reject(err);
       resolve(article);
     });
