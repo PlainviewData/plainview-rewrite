@@ -2,6 +2,10 @@ const DEFAULT_OPTIONS = {
   'ignore_article_min_time_passed': function(b){ //ignores minimum time to check for article revision
     if (typeof b !== 'boolean') return true;
     return b || false;
+  },
+  'post_to_archive_is': function(b){
+    if (typeof b !== 'boolean') return true;
+    return b && true;
   }
 }
 
