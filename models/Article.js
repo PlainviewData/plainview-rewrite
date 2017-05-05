@@ -49,6 +49,7 @@ articleSchema.virtual('news_site_domain').get(function () {
 });
 
 articleSchema.statics.createNew = function createNew(url, options){
+  console.log('options1', options);
   return new Promise(function(resolve, reject){
     if (typeof url !== 'string' && (url instanceof String) === false || validator.isURL(url) === false) reject(MESSAGES.INVALID_URL);
     url = validator.trim(url);
@@ -64,6 +65,7 @@ articleSchema.statics.createNew = function createNew(url, options){
       article.original_authors = content.author; //change to authors
       article.original_date_posted = content.date; //change to date_posted
     }).then(function(){
+      console.log('options2', options);
       if (options.post_to_archive_is){
         return archive_is.save(article.news_site_url).then(function (result) {
           article.archive_is_id = result.id;

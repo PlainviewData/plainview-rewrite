@@ -37,7 +37,7 @@ archiveSchema.statics.createNew = function createNew(url, quote, options){
 				article = foundArticle;
 				archive.article = article._id;
 			} else {
-				return Article.createNew(url)
+				return Article.createNew(url, options)
 				.then(function(newArticle){
 					article = newArticle;
 					archive.article = article._id;

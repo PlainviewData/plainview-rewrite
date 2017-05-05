@@ -35,6 +35,7 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next){
+  console.log(req.body.options);
   Archive.createNew(req.body.url, req.body.quote, req.body.options)
   .then(function(archiveWithArticle){
     res.status(201).json(archiveWithArticle);
