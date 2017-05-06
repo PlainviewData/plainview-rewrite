@@ -7,7 +7,7 @@ const sanitizeGetRequestQuery = require('../bin/article_get_sanitizer').sanitize
 const sanitizePostRequestBody = require('../bin/article_post_sanitizer').sanitizePostRequestBody;
 
 router.get('/:id', function(req, res, next){
-  req.query = sanitizeGetRequestQuery(req.query);
+  req.query.options = sanitizeGetRequestQuery(req.query.options);
   next();
 });
 
@@ -17,7 +17,7 @@ router.post('/', function(req, res, next){
 });
 
 router.get('/:id', function(req, res, next) {
-  Article.findById(req.params.id, req.body.options)
+  Article.findById(req.params.id, req.query.options)
   .then(function(article){
     if (article !== null) {
       res.status(200).json(article);

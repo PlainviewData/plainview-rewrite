@@ -3,9 +3,9 @@ const shortid = require('shortid');
 const jsdiff = require('diff');
 const parseDomain = require('parse-domain');
 const some = require('lodash.some');
-const isEqual = require('lodash.isEqual');
+const isEqual = require('lodash.isequal');
 const isEqualWith = require('lodash.isequalwith');
-const isEmpty = require('lodash.isEmpty');
+const isEmpty = require('lodash.isempty');
 const moment = require('moment');
 const validator = require('validator');
 const archive_is = require('archive.is');
@@ -180,7 +180,7 @@ articleSchema.methods.addRevisions = function addRevisions(changes) {
   var article = this;
   var pushedObject = {};
   changes.forEach(function(change){
-    pushedObject[change.field] = change.diff;
+    pushedObject[change.field] = {change: change.diff, time_observed: new Date()};
   });
   return new Promise(function(resolve, reject){
     Article.findOneAndUpdate({ _id: article._id }, { $push: pushedObject }, {new: true}, function(err, updatedArticle){
