@@ -4,8 +4,8 @@ const DEFAULT_OPTIONS = {
     return b || false;
   },
   'post_to_archive_is': function(b){
-    if (typeof b !== 'boolean') return true;
-    return b || true;
+    if (typeof b !== 'boolean') return false;
+    return b || false;
   }
 }
 
