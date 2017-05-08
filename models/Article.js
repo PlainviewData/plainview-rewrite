@@ -30,6 +30,7 @@ const articleSchema = new Schema({
 	_id: { type: String, 'default': shortid.generate, required: true, unique: true},
   scraped_using: {type: String, required: true},
 	news_site_url: {type: String, required: true},
+  original_archive_time {type: Date, default: Date.now, required: true},
   last_checked_for_revision: {type: Date, default: Date.now, required: true},
 
 	original_headline: {type: String, required: true},
@@ -50,38 +51,49 @@ articleSchema.virtual('news_site_domain').get(function () {
 });
 
 articleSchema.statics.createNew = function createNew(url, options){
+  var Archive = this;
   return new Promise(function(resolve, reject){
-    if (typeof url !== 'string' && (url instanceof String) === false || validator.isURL(url) === false) reject(MESSAGES.INVALID_URL);
-    url = validator.trim(url);
-
-    var article = new Article();
-    article.news_site_url = url;
+    if (typeof url !== 'string' && (url instanceof String) === false || validator.isURL(url) === false || parseDomain(url) == null) reject(MESSAGES.INVALID_URL);
     if (some(SUPPORTED_WEBSITES, ['domain', parseDomain(url).domain]) === false) reject(MESSAGES.UNSUPPORTED_WEBSITE);
-    scraper.scrape(url)
-    .then(function(content){
-      article.scraped_using = scraper.CURRENT_SCRAPING_METHOD;
-      article.original_headline = content.headline;
-      article.original_story_content = content.story;
-      article.original_authors = content.author; //change to authors
-      article.original_date_posted = content.date; //change to date_posted
-    }).then(function(){
-      if (options.post_to_archive_is){
-        return archive_is.save(article.news_site_url).then(function (result) {
-          article.archive_is_id = result.id;
-        });
+
+    Archive.findByUrl(url, options)
+    .then(function(archive){
+      if (archive) {
+        resolve (archive);
       } else {
-        article.archive_is_id = null;
-        return;
+        url = validator.trim(url);
+        var article = new Article();
+        article.news_site_url = url;
+        scraper.scrape(url)
+        .then(function(content){
+          article.scraped_using = scraper.CURRENT_SCRAPING_METHOD;
+          article.original_headline = content.headline;
+          article.original_story_content = content.story;
+          article.original_authors = content.author; //change to authors
+          article.original_date_posted = content.date; //change to date_posted
+        }).then(function(){
+          if (options.post_to_archive_is){
+            return archive_is.save(article.news_site_url).then(function (result) {
+              article.archive_is_id = result.id;
+            });
+          } else {
+            article.archive_is_id = null;
+            return;
+          }
+        }).then(function(){
+          article.save(function(err, article){
+            if (err) reject(err);
+            resolve(article);
+          }).catch(function(err){
+            reject(err);
+          });
+        }).catch(function(err){
+          reject(err);
+        });
       }
-    }).then(function(){
-      article.save(function(err, article){
-        if (err) reject(err);
-        resolve(article);
-      }).catch(function(err){
-        reject(err);
-      });
-    }).catch(function(err){
-      reject(err);
+    })
+    .catch(function(err){
+      reject(err); return;
     });
   });
 };
