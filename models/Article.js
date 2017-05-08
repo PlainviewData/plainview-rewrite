@@ -180,7 +180,7 @@ articleSchema.methods.addRevisions = function addRevisions(changes) {
   var article = this;
   var pushedObject = {};
   changes.forEach(function(change){
-    pushedObject[change.field] = change.diff;
+    pushedObject[change.field] = {change: change.diff, time_observed: new Date()};
   });
   return new Promise(function(resolve, reject){
     Article.findOneAndUpdate({ _id: article._id }, { $push: pushedObject }, {new: true}, function(err, updatedArticle){

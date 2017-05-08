@@ -17,7 +17,7 @@ router.post('/', function(req, res, next){
 });
 
 router.get('/:id', function(req, res, next) {
-  Archive.findById(req.params.id, req.body.options)
+  Archive.findById(req.params.id, req.query.options)
   .then(function(archive){
     if (archive !== null) {
       res.status(200).json(archive);
