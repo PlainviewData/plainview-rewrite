@@ -30,7 +30,7 @@ const articleSchema = new Schema({
 	_id: { type: String, 'default': shortid.generate, required: true, unique: true},
   scraped_using: {type: String, required: true},
 	news_site_url: {type: String, required: true},
-  original_archive_time {type: Date, default: Date.now, required: true},
+  original_archive_time: {type: Date, default: Date.now, required: true},
   last_checked_for_revision: {type: Date, default: Date.now, required: true},
 
 	original_headline: {type: String, required: true},
