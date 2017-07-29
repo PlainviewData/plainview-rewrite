@@ -13,7 +13,7 @@ const articles = require('./routes/articles');
 const app = express();
 
 mongoose.Promise = global.Promise;
-mongoose.connect(DB_CONFIG.DB_CONNECTION);
+mongoose.connect(DB_CONFIG.DB_CONNECTION, {"useMongoClient":true});
 aws.config.update({accessKeyId: DB_CONFIG.AWS_ACCESS_KEY, secretAccessKey: DB_CONFIG.AWS_SECRET_KEY});
 const s3 = new aws.S3();
 
@@ -27,9 +27,10 @@ app.use('/articles', articles);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  // var err = new Error('Not Found');
+  // err.status = 404;
+  // next(err);
+  res.send("Not found")
 });
 
 // error handler
