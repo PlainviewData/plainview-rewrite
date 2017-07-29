@@ -1,5 +1,5 @@
 {
-  "name": "Plainview API Server",
+  "name": "PlainviewAPIServer",
   "version": "0.0.0",
   "private": true,
   "scripts": {
