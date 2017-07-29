@@ -3,6 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const aws = require('aws-sdk');
+
 const DB_CONFIG = require('./config/db');
 
 const index = require('./routes/index');

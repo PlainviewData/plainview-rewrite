@@ -1,5 +1,6 @@
 const noodle = require('noodlejs');
 const parseDomain = require('parse-domain');
+const path = require('path');
 const MESSAGES = require('../bin/messages');
 const config = require('../config/scraper');
 const SupportedWebsite = require('../models/SupportedWebsite');
@@ -13,6 +14,7 @@ SupportedWebsite.getAll()
   .then(function(sites){
     SUPPORTED_WEBSITES = sites;
   })
+
 
 var scrape = function(url){
   return new Promise(function(resolve, reject){
