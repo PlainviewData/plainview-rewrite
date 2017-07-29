@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const shortid = require('shortid');
-const _ = require('lodash');
 const validator = require('validator');
 const aws = require('aws-sdk');
 const Article = require('./Article');
